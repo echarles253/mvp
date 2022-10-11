@@ -1,0 +1,18 @@
+.input-box {
+    width: 300px;
+    height: 200px;
+    text-align: left;
+    
+}
+
+#message-box{
+    background-color: aqua;
+    width: 500px;
+    height: 500px;
+    float: right;
+}
+
+#user-section{
+    background-color: blue;
+    
+}
