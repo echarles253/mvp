@@ -3,6 +3,7 @@ let post = document.getElementById('button')
 let userName = document.getElementById('uname')
  let postSubject = document.getElementById('subject')
  let postMessage = document.getElementById('input-box')
+ let editButto
 
 
     fetch('http://localhost:3001/api/users')
@@ -15,6 +16,7 @@ let userName = document.getElementById('uname')
             let userAndPost = document.createElement('p')
             subjectHeader.textContent = curr.post_subject
             userAndPost.textContent = `@${curr.users_name}:${curr.post}`
+            
             card.append(subjectHeader)
             card.append(userAndPost)
             mainContainer.append(card)
