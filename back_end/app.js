@@ -50,20 +50,22 @@ app.route('/api/users/:id')
     })
 })
 
-app.patch((req,res)=>{
+.patch((req,res)=>{
     let id = req.params.id
     let post = req.body
+    console.log(post,id)
     if(post.name) {
-        client.query(`UPDATE users SET users_name = ${post.name} WHERE id = ${id}`)
+        client.query(`UPDATE users SET users_name = '${post.name}' WHERE id = ${id}`)
 
     } 
     if(post.subject) {
-        client.query(`UPDATE users SET post_subject = ${post.subject} WHERE id = ${id}`)
+        client.query(`UPDATE users SET post_subject = '${post.subject}' WHERE id = ${id}`)
     }
     if(post.post) {
-        client.query(`UPDATE users SET post = ${post.post} WHERE id = ${id}`)
+        client.query(`UPDATE users SET post = '${post.post}' WHERE id = ${id}`)
+        
     }
-    res.status(201).send('updated post')
+    res.status(201).send("updated post")
 })
 
 

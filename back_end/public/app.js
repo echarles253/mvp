@@ -9,34 +9,39 @@ let editSubject;
 let editForm;
 let editButton;
 let deleteButton;
+let submit;
 
 
  
  //get functionality
- fetch('http://localhost:3001/api/users')
- .then(data => data.json())
- .then(data => {
-     for(let i = 0;i<data.length;i++) {
-         let curr = data[i]
-        
-         let card = document.createElement('span')
-         let subjectHeader = document.createElement('h1')
-         let userAndPost = document.createElement('p')
-        
-         subjectHeader.textContent = curr.post_subject
-         userAndPost.textContent = `@${curr.users_name}:${curr.post}`
-         createButtons(curr.id)
-         
-         card.append(subjectHeader)
-         card.append(userAndPost)
-        card.appendChild(editButton)
-         card.appendChild(deleteButton)
-         card.append(editForm)
-        
-         mainContainer.append(card)
-        }
-    })
+ function getData (){
+     fetch('http://localhost:3001/api/users')
+     .then(data => data.json())
+     .then(data => {
+         for(let i = 0;i<data.length;i++) {
+             
+            let curr = data[i]
+            
+             let card = document.createElement('span')
+             let subjectHeader = document.createElement('h1')
+             let userAndPost = document.createElement('p')
+            
+             subjectHeader.textContent = curr.post_subject
+             userAndPost.textContent = `@${curr.users_name}:${curr.post}`
+             createButtons(curr.id)
+             
+             card.append(subjectHeader)
+             card.append(userAndPost)
+            card.appendChild(editButton)
+             card.appendChild(deleteButton)
+             card.append(editForm)
+            
+             mainContainer.append(card)
+            }
+        })
 
+ }
+    getData();
 
     //post functionality
     post.addEventListener('click',()=>{
@@ -74,7 +79,8 @@ let deleteButton;
            
             mainContainer.append(postCard)
         })
-        
+        mainContainer.innerHTML = ''
+       getData()
     })
     
     
@@ -91,17 +97,27 @@ function createButtons (id) {
         editButton = document.createElement('button')
         deleteButton = document.createElement('button')
         deleteButton.setAttribute('userid',id)
-        editButton.setAttribute('edit-user-id',id)
+        deleteButton.innerText = 'delete'
+
         editButton.innerText = 'Edit' 
-         editForm = document.createElement('form')
+        editForm = document.createElement('form')
         editForm.style.display = 'none'
-         editMessage = document.createElement('input')
-         editUserName = document.createElement('input')
-         editSubject = document.createElement('input')
-        deleteButton.innerText = 'Delete'
+        editMessage = document.createElement('input')
+        editMessage.className = 'edit-message'
+        editMessage.setAttribute('message',id)
+        editUserName = document.createElement('input')
+        editUserName.setAttribute('userName',id)
+        editSubject = document.createElement('input')
+        editSubject.setAttribute('subject',id)
+        
         editForm.append(editMessage)
         editForm.append(editUserName)
         editForm.append(editSubject)
+        submit = document.createElement('button')
+        submit.setAttribute('edit-user-id',id)
+        submit.innerText = 'submit'
+        editForm.setAttribute('unique',id)
+        editForm.append(submit)
         i++;
     }
 
@@ -120,40 +136,54 @@ function createButtons (id) {
         fetch(`http://localhost:3001/api/users/${userId}`,deleteOptions)
         .then(data => {
             //let deletedCard = document.getElementById('card')
-            console.log(data.body)
             alert('post deleted')
             e.target.parentElement.remove()
         })
-        
+        mainContainer.innerHTML = ''
+        getData()
     })
 
     //edit functionality
      editButton.addEventListener('click',(e)=>{
-        if(editForm.style.display === 'none') {
-            editForm.style.display = 'block'
-           } else {
-            editForm.style.display = 'none'
-           }
-           let editUserName = 
+        let unique = e.target.parentElement.lastChild
        
-        editUserId = e.target.getAttribute('edit-user-id')
-       let editedPost = {
-        name:editUserName.value, 
-        subject:editSubject.value,
-        message:editMessage.value,
-       }
-        let editOptions = {
-            method:'PATCH',
-            mode: 'cors',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(editedPost)
-        }
-        // fetch(`http://localhost:3001/api/users/${editUserId}`,editOptions) 
-        // .then(res=>res.json())
-        // .then(result => {
-        // })
-    })
-    
-}
+        console.log(unique)
+        if(unique.style.display === 'none') {
+            unique.style.display = 'block'
+           } else {
+            unique.style.display = 'none'
+           }
+           
+       
+        })
+        
+        submit.addEventListener('click',(e) =>{
+            
+            e.preventDefault()
+            submit.setAttribute('edit-user-id',id)
+            editUserId = e.target.getAttribute('edit-user-id')
+            console.log(editUserId)
+            let editedPost = {
+                name:e.target.parentElement.firstChild.value, 
+                subject:e.target.parentElement.children[1].value,
+                message:e.target.parentElement.children[2].value
+            }
+            console.log(editedPost.subject)
+            let editOptions = {
+                method:'PATCH',
+                mode: 'cors',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(editedPost)
+            }
+            fetch(`http://localhost:3001/api/users/${editUserId}`,editOptions) 
+            .then(result => {
+
+                console.log(result)
+                })
+                
+                mainContainer.innerHTML = ''
+                getData();
+            })
+    }
