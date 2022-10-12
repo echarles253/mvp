@@ -114,13 +114,24 @@ function createButtons (id) {
         editSubject = document.createElement('input')
         editSubject.setAttribute('subject',id)
         
-        editForm.append(editMessage)
+        
+        editUserLabel = document.createElement('label')//labels
+        editUserLabel.innerText = 'User name:'
+        editMessageLabel = document.createElement('label')
+        editMessageLabel.innerText = 'Message:'
+        editSubjectLabel = document.createElement('label')
+        editSubjectLabel.innerText = 'Subject:'//labels
+        editForm.append(editUserLabel)
         editForm.append(editUserName)
-        editForm.append(editSubject)
+        
         submit = document.createElement('button')
         submit.setAttribute('edit-user-id',id)
         submit.innerText = 'submit'
         editForm.setAttribute('unique',id)
+        editForm.append(editSubjectLabel)
+        editForm.append(editSubject)
+        editForm.append(editMessageLabel)
+        editForm.append(editMessage)
         editForm.append(submit)
         i++;
     }
