@@ -1,18 +1,74 @@
-.input-box {
-    width: 300px;
-    height: 200px;
-    text-align: left;
+body{
+     background-image:url(blog.jpg); 
+    font-family: cursive;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-color: cadetblue;
+}
+
+#input-box{
+    height: 100px;
+    width:200px;
+    resize: none;
+}
+
+#uname {
+    border-radius: 50px;
     
 }
 
-#message-box{
-    background-color: aqua;
-    width: 500px;
-    height: 500px;
-    float: right;
+#subject{
+    border-radius: 50px;
 }
-
-#user-section{
-    background-color: blue;
+.card {
+   background-color: rgba(128, 128, 128, 0.212);
+   border-radius: 50px;
+   align-items: center;
+   color: aliceblue;
     
 }
+
+
+button {
+    
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+    transition-duration: 0.4s;
+    background-color: rgba(249, 249, 249, 0.534);
+    padding: 10px;
+}
+
+button:hover{
+    background-color: rgb(153, 153, 153);
+    color: rgb(255, 255, 255);
+
+}
+.header {
+    
+        align-self: center;
+        text-align: center;
+        display: block;
+        border-color: cadetblue;
+        color: azure;
+        border: double;
+        border-width: thick;
+        border-color: cadetblue;
+        border-block-color: unset;
+
+}
+
+
+    #form {
+        text-align: center;
+        display: list-item;
+        color: aliceblue;
+    }
+
+
+label {
+    height:100px;
+    width: 100px;
+
+}
+
+
