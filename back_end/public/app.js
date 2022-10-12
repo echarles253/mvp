@@ -31,10 +31,10 @@ function getData (){
     }
     fetch('https://fake-aol.onrender.com/api/users',getOptions)
     .then(data => data.json())
-    .then(data => {
-        for(let i = 0;i<data.length;i++) {
+    .then(result => {
+        for(let i = 0;i<result.length;i++) {
             
-            let curr = data[i]
+            let curr = result[i]
             
             let card = document.createElement('div')
             card.classList.add('card')
@@ -78,7 +78,7 @@ function getData (){
         fetch('https://fake-aol.onrender.com/api/users',options)
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
+           
             
             let postCard = document.createElement('div')
             postCard.classList.add('card')
@@ -102,9 +102,7 @@ function getData (){
     
     
     
-    // editButton.addEventListener('click',()=>{
-        
-        // })
+    
         
         
         function createButtons (id) {
