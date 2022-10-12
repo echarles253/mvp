@@ -53,17 +53,18 @@ app.route('/api/users/:id')
 .patch((req,res)=>{
     let id = req.params.id
     let post = req.body
-    console.log(post,id)
+    
+   console.log(post,id)
+   console.log(post.post)
+   if(post.message) {
+       client.query(`UPDATE users SET post = '${post.message}' WHERE id = ${id}`)
+   }
     if(post.name) {
         client.query(`UPDATE users SET users_name = '${post.name}' WHERE id = ${id}`)
 
     } 
     if(post.subject) {
         client.query(`UPDATE users SET post_subject = '${post.subject}' WHERE id = ${id}`)
-    }
-    if(post.post) {
-        client.query(`UPDATE users SET post = '${post.post}' WHERE id = ${id}`)
-        
     }
     res.status(201).send("updated post")
 })

@@ -10,6 +10,9 @@ let editForm;
 let editButton;
 let deleteButton;
 let submit;
+let editUserLabel;
+let editSubjectLabel;
+let editMessageLabel;
 
 
  
@@ -63,7 +66,7 @@ let submit;
         fetch('http://localhost:3001/api/users',options)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+           // console.log(data)
            
             let postCard = document.createElement('span')
             let newSubject = document.createElement('h1')
@@ -102,6 +105,7 @@ function createButtons (id) {
         editButton.innerText = 'Edit' 
         editForm = document.createElement('form')
         editForm.style.display = 'none'
+        
         editMessage = document.createElement('input')
         editMessage.className = 'edit-message'
         editMessage.setAttribute('message',id)
@@ -147,7 +151,7 @@ function createButtons (id) {
      editButton.addEventListener('click',(e)=>{
         let unique = e.target.parentElement.lastChild
        
-        console.log(unique)
+        //console.log(unique)
         if(unique.style.display === 'none') {
             unique.style.display = 'block'
            } else {
@@ -162,13 +166,13 @@ function createButtons (id) {
             e.preventDefault()
             submit.setAttribute('edit-user-id',id)
             editUserId = e.target.getAttribute('edit-user-id')
-            console.log(editUserId)
+            //console.log(editUserId)
             let editedPost = {
                 name:e.target.parentElement.firstChild.value, 
                 subject:e.target.parentElement.children[1].value,
                 message:e.target.parentElement.children[2].value
             }
-            console.log(editedPost.subject)
+      
             let editOptions = {
                 method:'PATCH',
                 mode: 'cors',
@@ -179,8 +183,8 @@ function createButtons (id) {
             }
             fetch(`http://localhost:3001/api/users/${editUserId}`,editOptions) 
             .then(result => {
-
-                console.log(result)
+                console.log(editedPost.message)
+                //console.log(result)
                 })
                 
                 mainContainer.innerHTML = ''
