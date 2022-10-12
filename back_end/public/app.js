@@ -27,9 +27,7 @@ function getData (){
     let getOptions = {
         method:'GET',
         mode:'cors',
-        headers:{
-            'Content-Type': 'application/json'
-        }
+     
     }
     fetch('https://fake-aol.onrender.com/api/users',getOptions)
     .then(data => data.json())
