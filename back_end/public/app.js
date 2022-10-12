@@ -24,7 +24,14 @@ let sfx ={
 }
 //get functionality
 function getData (){
-    fetch('https://fake-aol.onrender.com/api/users')
+    let getOptions = {
+        method:'GET',
+        mode:'cors',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }
+    fetch('https://fake-aol.onrender.com/api/users',getOptions)
     .then(data => data.json())
     .then(data => {
         for(let i = 0;i<data.length;i++) {
@@ -153,7 +160,8 @@ function getData (){
         // console.log(this.getAttribute('userid'))
         let deleteOptions = {
             
-            method: 'DELETE'
+            method: 'DELETE',
+            mode:'cors'
         }
         
         fetch(`https://fake-aol.onrender.com/api/users/${userId}`,deleteOptions)
