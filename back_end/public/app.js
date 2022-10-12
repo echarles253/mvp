@@ -29,7 +29,7 @@ function getData (){
         mode:'cors',
      
     }
-    fetch('https://fake-aol.onrender.com/api/users',getOptions)
+    fetch('https://fake-aol-serverside.onrender.com/api/users',getOptions)
     .then(data => data.json())
     .then(result => {
         for(let i = 0;i<result.length;i++) {
@@ -75,7 +75,7 @@ function getData (){
             },
             body: JSON.stringify(newPost)
         }
-        fetch('https://fake-aol.onrender.com/api/users',options)
+        fetch('https://fake-aol-serverside.onrender.com/api/users',options)
         .then(res => res.json())
         .then(data => {
            
@@ -160,7 +160,7 @@ function getData (){
             mode:'cors'
         }
         
-        fetch(`https://fake-aol.onrender.com/api/users/${userId}`,deleteOptions)
+        fetch(`https://fake-aol-serverside.onrender.com/api/users/${userId}`,deleteOptions)
         .then(data => {
             //let deletedCard = document.getElementById('card')
             alert('post deleted')
@@ -204,7 +204,7 @@ function getData (){
             },
             body: JSON.stringify(editedPost)
         }
-        fetch(`https://fake-aol.onrender.com/api/users/${editUserId}`,editOptions) 
+        fetch(`https://fake-aol-serverside.onrender.com/api/users/${editUserId}`,editOptions) 
         .then(result => {
             console.log(editedPost.message)
             //console.log(result)
