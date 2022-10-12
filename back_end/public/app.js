@@ -24,12 +24,8 @@ let sfx ={
 }
 //get functionality
 function getData (){
-    let getOptions = {
-        method:'GET',
-        mode:'cors',
-     
-    }
-    fetch('https://fake-aol-serverside.onrender.com/api/users',getOptions)
+ 
+    fetch('https://fake-aol-serverside.onrender.com/api/users')
     .then(data => data.json())
     .then(result => {
         for(let i = 0;i<result.length;i++) {
