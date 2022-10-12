@@ -24,7 +24,7 @@ let sfx ={
 }
 //get functionality
 function getData (){
-    fetch('http://localhost:3001/api/users')
+    fetch('https://fake-aol.onrender.com/api/users')
     .then(data => data.json())
     .then(data => {
         for(let i = 0;i<data.length;i++) {
@@ -70,7 +70,7 @@ function getData (){
             },
             body: JSON.stringify(newPost)
         }
-        fetch('http://localhost:3001/api/users',options)
+        fetch('https://fake-aol.onrender.com/api/users',options)
         .then(res => res.json())
         .then(data => {
             // console.log(data)
@@ -156,7 +156,7 @@ function getData (){
             method: 'DELETE'
         }
         
-        fetch(`http://localhost:3001/api/users/${userId}`,deleteOptions)
+        fetch(`https://fake-aol.onrender.com/api/users/${userId}`,deleteOptions)
         .then(data => {
             //let deletedCard = document.getElementById('card')
             alert('post deleted')
@@ -200,7 +200,7 @@ function getData (){
             },
             body: JSON.stringify(editedPost)
         }
-        fetch(`http://localhost:3001/api/users/${editUserId}`,editOptions) 
+        fetch(`https://fake-aol.onrender.com/api/users/${editUserId}`,editOptions) 
         .then(result => {
             console.log(editedPost.message)
             //console.log(result)
